@@ -1,12 +1,10 @@
 from cgitb import text
 import os
 from urllib import response
-from dotenv import load_dotenv
 import google.generativeai as gemini
 import google.ai.generativelanguage as glm
 import streamlit as st
 
-load_dotenv(".env")
 
 # API key set
 gemini.configure(api_key=os.getenv("API_KEY"))
