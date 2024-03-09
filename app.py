@@ -1,15 +1,11 @@
 from cgitb import text
-import os
 from urllib import response
 import google.generativeai as gemini
 import google.ai.generativelanguage as glm
 import streamlit as st
 
-# Read secret
-st.write("API KEY:", os.environ["API_KEY"] == st.secrets["API_KEY"],)
-
 # API key set
-gemini.configure(api_key=os.getenv("API_KEY"))
+gemini.configure(api_key=st.secrets["API_KEY"])
 
 # Title setting
 st.set_page_config(
