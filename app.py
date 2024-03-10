@@ -46,6 +46,7 @@ if prompt := st.chat_input("ここに入力してください"):
     response = st.session_state["chat_session"].send_message(prompt)
 
     node = mt.parseToNode(response.text)
+    print(response.text)
     seisei = ""
     while node:
         word = node.feature.split(",")
@@ -54,15 +55,18 @@ if prompt := st.chat_input("ここに入力してください"):
         node = node.next
 
         print(word)
-        if word[1] in "数詞":
+        if len(word) < 7 or word[1] in "数詞":
             word_length = 1
+
         else:
             word_length = len(word[6])
 
         if word[0] in "BOS/EOS":
             continue
         if word[0] in "補助記号":
-            seisei = seisei + "!　"
+            if seisei[-1] == "セ":
+                seisei = seisei + "イ"
+            seisei = seisei + "！　"
             continue
         if word_length % 2 > 0:
             seisei = seisei + "セ"
