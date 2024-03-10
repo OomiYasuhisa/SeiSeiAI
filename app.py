@@ -1,19 +1,21 @@
-from cgitb import text
-from urllib import response
 import google.generativeai as gemini
 import google.ai.generativelanguage as glm
 import streamlit as st
+import MeCab
+
+#Mecab init
+mt = MeCab.Tagger("-Owakati")
 
 # API key set
 gemini.configure(api_key=st.secrets["API_KEY"])
 
 # Title setting
 st.set_page_config(
-    page_title="セイセイAI",
+    page_title="SeiSei AI",
     page_icon="😎"
 )
 
-st.title("😎 セイセイAI")
+st.title("😎 SeiSei AI")
 
 # Session init
 if "chat_session" not in st.session_state :
@@ -46,7 +48,8 @@ if prompt := st.chat_input("ここに入力してください"):
     with st.chat_message("assistant"):
         st.markdown(response.text)
 
+
     # Add responce in chat log
-        st.session_state["chat_history"].append({"role": "assistant", "content": response.text})
+    st.session_state["chat_history"].append({"role": "assistant", "content": response.text})
 
 
