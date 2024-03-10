@@ -1,2 +1,2 @@
-MeCab
+mecab
 python3-mecab
