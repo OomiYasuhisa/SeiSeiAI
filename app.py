@@ -72,10 +72,9 @@ if prompt := st.chat_input("ここに入力してください"):
 
     # Show response
     with st.chat_message("assistant"):
-        st.markdown(response.text)
         st.markdown(seisei)
 
     # Add responce in chat log
-    st.session_state["chat_history"].append({"role": "assistant", "content": response.text})
+    st.session_state["chat_history"].append({"role": "assistant", "content": seisei})
 
 
